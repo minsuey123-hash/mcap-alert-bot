@@ -31,7 +31,13 @@ def save_state(state):
 
 def fetch_new_pools(network):
     url = f"https://api.geckoterminal.com/api/v2/networks/{network}/new_pools"
-    req = urllib.request.Request(url, headers={"Accept": "application/json"})
+    req = urllib.request.Request(
+        url,
+        headers={
+            "Accept": "application/json",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        },
+    )
     with urllib.request.urlopen(req, timeout=15) as resp:
         return json.load(resp)
 
